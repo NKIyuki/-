@@ -4,9 +4,11 @@ class Member::PostsController < ApplicationController
   end
 
   def index
+    @post = Post.all
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -21,7 +23,7 @@ class Member::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title,:content)
+    params.require(:post).permit(:title,:content,:image)
   end
 
 

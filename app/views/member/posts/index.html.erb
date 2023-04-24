@@ -1,4 +1,19 @@
 <h1>Member::Posts#index</h1>
 <p>Find me in app/views/member/posts/index.html.erb</p>
 
-<div class =
+<div class ="container">
+  <div class = "row">
+    <div class = "col">
+      <h2>デカ盛り一覧</h2>
+    </div>
+  </div>
+  <% @posts.each do |post| %>
+  <div class = "row">
+    <div class = "col">
+      <h4>タイトル</h4>
+    </div>
+    <div class = "col">
+      <%=link_to post.title,post_path(post.id)%
+    </div>
+  </div>
+</div>
