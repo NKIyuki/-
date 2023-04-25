@@ -4,7 +4,7 @@ class Member::PostsController < ApplicationController
   end
 
   def index
-    @post = Post.all
+    @posts = Post.all
   end
 
   def show
@@ -16,8 +16,9 @@ class Member::PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
+    post.user_id = current_user.id
     post.save
-    redirect_to 'post_path'
+    redirect_to post_path(post)
   end
 
   private

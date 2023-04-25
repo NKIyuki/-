@@ -13,7 +13,11 @@
       <h4>タイトル</h4>
     </div>
     <div class = "col">
-      <%=link_to post.title,post_path(post.id)%
+      <%=link_to post.title,post_path(post.id)%>
+    </div>
+    <div class = "col">
+        <%= image_tag post.image, size: "200x200" %>
     </div>
   </div>
+  <% end %>
 </div>
