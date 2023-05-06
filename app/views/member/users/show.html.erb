@@ -1,0 +1,63 @@
+
+<% if @user.avatar? %>
+  <%= image_tag @user.avatar.url %>
+<% else %>
+  <%= image_tag ("user.jpeg") %>
+<% end %>
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <h2>マイページ</h2>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <%= @user.name %>
+    </div>
+  </div>
+    <div class = "row">
+      <div class = "col">
+        <%= @avatar %>
+      </div>
+    </div>
+<% @posts.each do |post| %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <div class = "image">
+        <%= link_to post_path(post.id) do %>
+          <%if @post.image.present? %>
+            <% if @post.image.attached? %>
+              <% @post.image.each do |image| %>
+                <%= image_tag image.variant(resize: '500x500') %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= image_tag "no_images.png" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <%= post.title %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <%= post.content %>
+    </div>
+  </div>
+    <div class = "row">
+      <div class = "col">
+        <%= post.user.name %>
+      </div>
+  </div>
+<% end %>
+</div>

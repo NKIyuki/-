@@ -16,5 +16,20 @@
     <div class = "col">
       <%=@post.content%>
     </div>
+    <div class = "row">
+    <div class = "col">
+        <%= image_tag @post.image, size: "200x200" %>
+    </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+    <% if @post.user == current_user %>
+      <td><%= link_to"投稿内容を編集する",edit_post_path(@post.id) %></td>
+    <% else %>
+      <td></td>
+      <td></td>
+    <% end %>
+    </div>
   </div>
 </dic>

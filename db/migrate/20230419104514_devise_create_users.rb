@@ -34,8 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       ##名前を保存する
       t.string :name,null:false
-      
-      
+      t.string :image
+
       t.timestamps null: false
     end
 

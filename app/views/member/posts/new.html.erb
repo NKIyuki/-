@@ -35,7 +35,10 @@
   </div>
   <div class = "row">
     <div class = "col">
-      <%= f.file_field :image, accept: "image/*" %>
+      <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :images, multiple: true %>
+      </div>
     </div>
   </div>
   <div class = "row">

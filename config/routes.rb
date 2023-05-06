@@ -12,8 +12,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+get "search" => "searches#search"
+
+
 scope module: :member do
 resources :posts
+resources :users,only:[:show,:edit]
 end
 
 
