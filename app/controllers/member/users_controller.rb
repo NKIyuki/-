@@ -4,14 +4,13 @@ class Member::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @avatar = @user.avatar
-
   end
 
 
   def edit
-
+    @user = User.find(params[:id])
   end
-  
+
   def update
     if @user.update(user_params)
       redirect_to user_path
@@ -19,7 +18,7 @@ class Member::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
 
   private
 

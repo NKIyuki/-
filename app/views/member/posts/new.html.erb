@@ -6,7 +6,7 @@
     <div class = "col">
       <h1>投稿ページ</h1>
     </div>
-<%= form_with model:@posts,url: posts_path  do |f| %>
+<%= form_with model:@post,url: posts_path  do |f| %>
   </div>
   <div class = "row">
     <div class = "col">
@@ -36,8 +36,8 @@
   <div class = "row">
     <div class = "col">
       <div class="field">
-        <%= form.label :image %>
-        <%= form.file_field :images, multiple: true %>
+        <%= f.label :images %>
+        <%= f.file_field :images, multiple: true %>
       </div>
     </div>
   </div>

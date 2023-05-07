@@ -14,7 +14,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 get "search" => "searches#search"
 
-
 scope module: :member do
 resources :posts
 resources :users,only:[:show,:edit]

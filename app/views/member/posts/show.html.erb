@@ -1,7 +1,7 @@
 <h1>Member::Posts#show</h1>
 <p>Find me in app/views/member/posts/show.html.erb</p>
 
-<dic class = "container">
+<div class = "container">
   <div class = "row">
     <div class = "col">
       <h4>タイトル</h4>
@@ -16,12 +16,20 @@
     <div class = "col">
       <%=@post.content%>
     </div>
-    <div class = "row">
-    <div class = "col">
-        <%= image_tag @post.image, size: "200x200" %>
-    </div>
-    </div>
   </div>
+    <div class = "row">
+      <div class = "col">
+        <%if @post.images.present? %>
+          <% if @post.images.attached? %>
+            <% @post.images.each do |image| %>
+              <%= image_tag image.variant(resize: '100x100') %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= image_tag "no_images.png" %>
+        <% end %>
+      </div>
+    </div>
   <div class = "row">
     <div class = "col">
     <% if @post.user == current_user %>

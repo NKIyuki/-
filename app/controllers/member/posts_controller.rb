@@ -1,6 +1,6 @@
 class Member::PostsController < ApplicationController
   def new
-    @posts = Post.new
+    @post = Post.new
   end
 
   def index
@@ -9,7 +9,6 @@ class Member::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
   end
 
   def edit
@@ -20,6 +19,7 @@ class Member::PostsController < ApplicationController
   end
 
   def create
+    #byebug
     post = Post.new(post_params)
     post.user_id = current_user.id
     post.save
@@ -42,7 +42,7 @@ class Member::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title,:content,:image)
+    params.require(:post).permit(:title,:content,images: [])
   end
 
 
