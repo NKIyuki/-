@@ -6,11 +6,7 @@
     <div class = "col">
       <h2>マイページ</h2>
       <h2>
-        <% if @user.avatar? %>
-          <%= image_tag @user.avatar.url %>
-        <% else %>
-          <%= image_tag ("user.jpeg") %>
-        <% end %>
+        <%= image_tag @user.get_profile_image(200, 200) %>
       </h2>
       <h2><%= link_to @user.name,edit_user_path%></h2>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_05_064129) do
+ActiveRecord::Schema.define(version: 2023_04_24_105336) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2023_05_05_064129) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
-    t.text "comment_content", null: false
+    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2023_05_05_064129) do
     t.integer "post_id_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index "\"user_id\", \"post_id\"", name: "index_favorites_on_user_id_and_post_id", unique: true
     t.index ["post_id_id"], name: "index_favorites_on_post_id_id"
     t.index ["user_id_id"], name: "index_favorites_on_user_id_id"
   end
@@ -87,7 +88,6 @@ ActiveRecord::Schema.define(version: 2023_05_05_064129) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
