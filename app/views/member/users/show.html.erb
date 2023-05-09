@@ -13,6 +13,12 @@
   </div>
 <% @posts.each do |post| %>
   <div class = "row">
+    <div class = "col-12">
+      <h4>タイトル</h4>
+      <%= post.title %>
+    </div>
+  </div>
+  <div class = "row">
     <div class = "col">
       <div class = "image">
         <%= link_to post_path(post.id) do %>
@@ -31,12 +37,12 @@
   </div>
   <div class = "row">
     <div class = "col-12">
-      <%= post.title %>
+      <%= post.content %>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-12">
-      <%= post.content %>
+    <div class = "col">
+      <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
     </div>
   </div>
 <% end %>
