@@ -1,0 +1,41 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+  <% @posts.each do |post| %>
+  <div class = "row">
+    <div class = "col">
+      <h4>タイトル</h4>
+    </div>
+  </div>
+    <div class = "row">
+      <div class = "col-12">
+        <%=link_to post.title,post_path(post.id)%>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
+        <% post.images.each do |image| %>
+          <%if post.images.present? %>
+            <% if post.images.attached? %>
+              <%= image_tag image.variant(resize: '200x200') %>
+            <% end %>
+          <% else %>
+            <%= image_tag "no_images.png" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
+        <%= post.content %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
+        <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
+      </div>
+    </div>
+  <% end %>
+    </div>
+  </div>
+</div>

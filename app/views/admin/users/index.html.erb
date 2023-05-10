@@ -1,0 +1,16 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <h2>ユーザー一覧</h2>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <h2>マイページ</h2>
+      <h2>
+        <%= image_tag @user.get_profile_image(200, 200) %>
+      </h2>
+      <h2><%= link_to @user.name,admin_user_path(@user.id)%></h2>
+    </div>
+  </div>
+</div>

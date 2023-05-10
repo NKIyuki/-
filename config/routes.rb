@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     registrations: "member/registrations",
     sessions: 'member/sessions'
   }
-
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -14,14 +13,22 @@ Rails.application.routes.draw do
 
   get "search" => "searches#search"
 
+
   scope module: :member do
   resources :posts
-  resources :users,only:[:show,:edit]
+  resources :users,only:[:show,:edit,:update,:index]
   resources :posts,only:[:new,:create,:index,:show,:destroy] do
     resource :favorites,only:[:create,:destroy]
     resources :comments,only:[:create]
     end
- 
+  root 'homes#top'
+  end
+
+  namespace :admin do
+  resources :posts
+  resources :users
+  resources :comments
+
   end
 
 
