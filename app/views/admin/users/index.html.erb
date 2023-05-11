@@ -4,13 +4,14 @@
       <h2>ユーザー一覧</h2>
     </div>
   </div>
+  <% @users.each do |user| %>
   <div class = "row">
     <div class = "col">
-      <h2>マイページ</h2>
       <h2>
-        <%= image_tag @user.get_profile_image(200, 200) %>
+        <%= image_tag user.get_profile_image(100, 100) %>
       </h2>
-      <h2><%= link_to @user.name,admin_user_path(@user.id)%></h2>
+      <h2><%= link_to user.name,admin_user_path(user.id)%></h2>
     </div>
   </div>
+  <% end %>
 </div>
