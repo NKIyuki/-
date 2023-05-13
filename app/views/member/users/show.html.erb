@@ -3,46 +3,39 @@
 <div class = "container">
   <div class = "row">
     <div class = "col">
-      <h2>マイページ</h2>
       <h2>
-        <%= image_tag @user.get_profile_image(200, 200) %>
+        <%= link_to edit_user_path do %>
+        <%= image_tag @user.get_profile_image(200, 200),class: "img-thumbnail" %>
+        <% end %>
       </h2>
-      <h2><%= link_to @user.name,edit_user_path%></h2>
+      <h2><%= link_to @user.name,edit_user_path,style: "color: black;" %></h2>
     </div>
   </div>
-<% @posts.each do |post| %>
-  <div class = "row">
-    <div class = "col-12">
-      <h4>タイトル</h4>
-        <td><%= link_to post.title,post_path(post.id) %></td>
-    </div>
-  </div>
+  <% @posts.each do |post| %>
   <div class = "row">
     <div class = "col">
-      <div class = "image">
-        <%= link_to post_path(post.id) do %>
-          <%if post.images.present? %>
-            <% if post.images.attached? %>
-              <% post.images.each do |image| %>
-                <%= image_tag image.variant(resize: '200x200') %>
+      <div class="card mb-3">
+          <%= link_to post_path(post.id) do %>
+            <%if post.images.present? %>
+              <% if post.images.attached? %>
+                <% post.images.each do |image| %>
+                  <%= image_tag image.variant(resize: '200x200') %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= image_tag "no_images.png" %>
               <% end %>
             <% end %>
-          <% else %>
-            <%= image_tag "no_images.png" %>
-          <% end %>
-        <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post.title,post_path(post.id),style: "color: black;" %></h5>
+            <p class="card-text"><%= post.content %></p>
+            <p class="card-text">
+              <small class="color: black">
+                <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
+                👍<%= post.favorites.count %>
+              </small>
+            </p>
+          </div>
       </div>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-12">
-      <%= post.content %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-      <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
-    </div>
-  </div>
 <% end %>
 </div>

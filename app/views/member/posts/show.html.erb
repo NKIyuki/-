@@ -1,89 +1,73 @@
-<h1>Member::Posts#show</h1>
-<p>Find me in app/views/member/posts/show.html.erb</p>
-
 <div class = "container">
   <div class = "row">
-    <div class = "col">
-      <h4>タイトル</h4>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-      <% if @post.user == current_user %>
-        <td><%= link_to @post.title,edit_post_path(@post.id) %></td>
-      <% else %>
-        <td></td>
-        <td></td>
-      <% end %>
-    </div>
-  </div>
-    <div class = "row">
-      <div class = "col">
+      <div class="card" style="width: auto;">
         <%if @post.images.present? %>
           <% if @post.images.attached? %>
+          <div class="row">
             <% @post.images.each do |image| %>
-              <%= image_tag image.variant(resize: '300x300') %>
+              <div class="col-6">
+              <%= image_tag image,class: "w-100" %>
+              </div>
             <% end %>
           <% end %>
+          </div>
         <% else %>
-          <%= image_tag "no_images.png" %>
+          <%= image_tag "no_images.png" ,class: "w-100" %>
         <% end %>
-      </div>
-    </div>
-  <div class = "row">
-    <div class = "col">
-      <%=@post.content%>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-      <h6>コメント<%=@post.comments.count %></h6>
-    </div>
-  </div>
-  <% @post.comments.each do |comment| %>
-  <div class = "row">
-    <div class = "col">
-      <p><%= image_tag comment.user.get_profile_image(50,50) %>
-         <%= comment.user.name %>
-      </p>
-         <%= comment.content %>
-    </div>
-  </div>
-  <% end %>
-  <div class = "row">
-    <div class = "col">
-      <%= form_with model:[@post,@comment] do |f| %>
-        <%= f.text_area :content,rows:'2',placeholder:"コメントする" %>
-        <%= f.submit "コメント投稿" %>
-      <% end %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-
-      <% if @post.favoried_by?(current_user) %>
-        <p>
-          <%= link_to post_favorites_path(@post), method: :delete do %>
-            ♥<%= @post.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to post_favorites_path(@post), method: :post do %>
-          ♡<%= @post.favorites.count %> いいね
-          <% end %>
-        </p>
-      <% end %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-    <% if @post.user == current_user %>
-      <td><%= link_to"投稿内容を編集する",edit_post_path(@post.id) %></td>
-    <% else %>
-      <td></td>
-      <td></td>
-    <% end %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <% if @post.user == current_user %>
+              <%= link_to @post.title,edit_post_path(@post.id),style: "color: black;" %>
+            <% else %>
+              <td></td>
+            <% end %>
+          </h5>
+          <p class="card-text"><%=@post.content%></p>
+        </div>
+        <div class = "row">
+          <div class = "col">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <% if @post.favoried_by?(current_user) %>
+                  <%= link_to post_favorites_path(@post),style: "color: red;", method: :delete do %>
+                  ♥<%= @post.favorites.count %> いいね
+                  <% end %>
+                <% else %>
+                  <%= link_to post_favorites_path(@post),style: "color: red;", method: :post do %>
+                  ♡<%= @post.favorites.count %> いいね
+                  <% end %>
+                <% end %>
+                <% if @post.user == current_user %>
+                  <td><%= link_to"投稿内容を編集する",edit_post_path(@post.id),class: "float-right",style: "color: black;" %></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+            </li>
+          </div>
+          </div>
+            <li class="list-group-item">
+              <%= form_with model:[@post,@comment] do |f| %>
+              <div class = "col">
+                <%= f.text_area :content,size:'60',placeholder:"コメントする" %>
+                <%= f.submit "コメント投稿" %>
+                <% end %>
+              </div>
+            </li>
+        </ul>
+    <div class="card-body">
+      <i href="#" class="card-link">
+        <% @post.comments.each do |comment| %>
+        <div class = "row">
+          <div class = "col">
+            <%= link_to post_comment_path(@post.id, comment.id)  do %>
+              <%= image_tag comment.user.get_profile_image(50,50) %>
+            <% end %>
+              <%= comment.user.name %>
+              <%= comment.content %>
+          </div>
+        </div>
+        <% end %>
+      </i>
     </div>
   </div>
-</dic>
+</div>

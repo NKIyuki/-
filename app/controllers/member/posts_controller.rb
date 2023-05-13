@@ -20,8 +20,10 @@ class Member::PostsController < ApplicationController
   end
 
   def create
-    #byebug
     post = Post.new(post_params)
+    if post_params["images"]&.length > 2
+      return redirect_to new_post_path, notice: '投稿できる画像は2つまでです'
+    end
     post.user_id = current_user.id
     post.save
     redirect_to post_path(post)

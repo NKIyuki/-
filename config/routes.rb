@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :users,only:[:show,:edit,:update,:index]
   resources :posts,only:[:new,:create,:index,:show,:destroy] do
+    resources :comments,only:[:create, :show, :destroy]
     resource :favorites,only:[:create,:destroy]
-    resources :comments,only:[:create]
     end
   root 'homes#top'
   end

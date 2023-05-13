@@ -11,11 +11,11 @@
     <div classn = "col">
     </div>
   </div>
-  
-  
-  
-  
-  
+
+
+
+
+
 <%= form_with model:@post,url: post_path(@post.id),method: :patch do |f| %>
   <div class = "row">
     <div class = "col">
@@ -42,7 +42,7 @@
      <%= f.submit'編集内容を投稿' %>
     </div>
     <div class = "col">
-       <h4><%= link_to "投稿内容を削除",post_path(@post.id),method: :delete %></h4>
+       <h4><%= link_to "投稿内容を削除",post_path(@post.id),method: :delete, data: { confirm: '本当に削除しますか？' } %></h4>
     </div>
   </div>
 <% end %>

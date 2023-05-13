@@ -6,7 +6,7 @@
   </div>
   <div class = "row">
     <div class = "col">
-       <%= image_tag @user.get_profile_image(200, 200) %>
+       <%= image_tag @user.get_profile_image(200, 200),class: "img-thumbnail" %>
     </div>
     <%= form_with model:@user  do |f| %>
     </div>

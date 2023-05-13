@@ -1,10 +1,8 @@
 class Admin::CommentsController < ApplicationController
-  def show
-    @comments = Comment.find(params[:id])
+  
+  def index
+    @comments = Comment.finf(params[:id])
   end
-  
-  
-  
   
 private
   
