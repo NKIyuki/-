@@ -1,0 +1,77 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <h3>詳細</h3>
+    </div>
+  </div>
+    <%if @posts.images.present? %>
+      <% if @posts.images.attached? %>
+      <div class="row">
+        <% @posts.images.each do |image| %>
+          <div class="col-6">
+          <%= image_tag image,class: "w-100" %>
+          </div>
+        <% end %>
+      <% end %>
+
+    <% else %>
+      <%= image_tag "no_images.png" ,class: "w-100" %>
+    <% end %>
+      <div class = "col">
+        <h4>ユーザーネーム</h4>
+      </div>
+      <div class = "col">
+        <%= @posts.user.name %>
+      </div>
+      <%= link_to "投稿を削除する？",admin_post_path(@posts.id),method: :delete,data: { confirm: '本当に削除しますか？' } %>
+    </div>
+  <div class="card" style="width:auto;">
+    <div class="card-body">
+          <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4"><h4></h4></div>
+          </div>
+        <div class="row">
+          <div class="col">
+            <h4>タイトル</h4>
+          </div>
+          <div class="col">
+            <h4><%= @posts.title %></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+          </div>
+        </div>
+        <div class = "col">
+          <div class = "row">
+            <p><%= @posts.content %></p>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <% @posts.comments.each do |comment| %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">プロフィール画像</th>
+            <th scope="col">ユーザーネーム</th>
+            <th scope="col">コメント</th>
+            <th scope="col">削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><%= image_tag comment.user.get_profile_image(50,50) %></th>
+            <td><%= comment.user.name %></td>
+            <td><%= comment.content %></td>
+            <td><%= link_to "削除",admin_post_comment_path(@posts.id, comment.id),method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

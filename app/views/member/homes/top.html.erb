@@ -1,42 +1,48 @@
-<div class = "container">
-<% @posts.each do |post| %>
- <div class = "row">
-   <div class = "col">
-     <div class="card mb-3" style="max-width: 540px;">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-            <% #post.images.each do |image| %>
-              <% if post.images.attached? %>
-                  <%= image_tag post.images[0].variant(resize: '100x100'),class: "w-100" %>
-              <% else %>
-                  <%= image_tag "no_images.png",class: "w-100" %>
+<% if user_signed_in? %>
+  <% @posts.each do |post| %>
+<div class="container">
+  <div class="row">
+    <div class="col"><% if post.images.attached? %>
+                    <%= image_tag post.images[0].variant(resize: '50x50'),class: "w-100" %>
+                <% else %>
+                    <%= image_tag "no_images.png",class: "w-100" %>
+                <% end %>
+    </div>
+    <div class="col">
+      <h5 class="card-title"><%=link_to post.title,post_path(post.id)%></h5>
+        <p class="card-text"><%= post.content.truncate(15) %></p>
+        <p class="card-text"><%= post.user.name %></p>
+        <p class="card-text"><small class="text-muted">
+          <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
+          <% if user_signed_in? %>
+            <% if post.favoried_by?(current_user) %>
+              <%= link_to post_favorites_path(post), method: :delete do %>
+              ♥<%= post.favorites.count %> いいね
               <% end %>
-            <% #end %>
-        </div>
-        <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%=link_to post.title,post_path(post.id)%></h5>
-          <p class="card-text"><%= post.content.truncate(16) %></p>
-          <p class="card-text"><%= post.user.name %></p>
-          <p class="card-text"><small class="text-muted">
-            <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
-            <% if user_signed_in? %>
-              <% if post.favoried_by?(current_user) %>
-                <%= link_to post_favorites_path(post), method: :delete do %>
-                ♥<%= post.favorites.count %> いいね
-                <% end %>
-              <% else %>
-                <%= link_to post_favorites_path(post), method: :post do %>
-                ♡<%= post.favorites.count %> いいね
-                <% end %>
+            <% else %>
+              <%= link_to post_favorites_path(post), method: :post do %>
+              ♡<%= post.favorites.count %> いいね
               <% end %>
             <% end %>
-              </small></p>
-            </div>
-          </div>
-        </div>
-      </div>
+          <% end %>
+            </small></p>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">col</div>
+    <div class="col">col</div>
+  </div>
+</div>
+  <% end %>
+<% else %>
+  <div class="jumbotron">
+  <div class='index-content text-center'>
+    <h1 class='home-index'>デカ盛り！ザ・食！</h1>
+
+    <div class='index-btn d-flex justify-content-around'>
+
+      <%= link_to '新規登録', new_user_registration_path, class: "btn btn-success btn-lg" %>
+      <%= link_to 'ログイン', new_user_session_path, class: "btn btn-success btn-lg" %>
     </div>
   </div>
-<% end %>
 </div>
+<% end %>

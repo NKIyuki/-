@@ -1,42 +1,33 @@
 <div class ="container">
   <div class = "row">
     <div class = "col">
-      <h2>デカ盛り一覧</h2>
+      <h2>投稿一覧</h2>
     </div>
   </div>
   <% @posts.each do |post| %>
-  <div class = "row">
-    <div class = "col">
-      <h4>タイトル</h4>
-    </div>
-  </div>
-    <div class = "row">
-      <div class = "col-12">
-        <%=link_to post.title,admin_post_path(post.id)%>
-      </div>
-    </div>
-    <div class = "row">
-      <div class = "col">
-        <% post.images.each do |image| %>
-          <%if post.images.present? %>
-            <% if post.images.attached? %>
-              <%= image_tag image.variant(resize: '200x200') %>
-            <% end %>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">プロフィール写真</th>
+      <th scope="col">ユーザーネーム</th>
+      <th scope="col">タイトル</th>
+      <th scope="col">内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+         <% if post.images.attached? %>
+            <%= image_tag post.images[0].variant(resize: '100x100'),class: "w-100" %>
           <% else %>
-            <%= image_tag "no_images.png" %>
+            <%= image_tag "no_images.png",class: "w-100" %>
           <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class = "row">
-      <div class = "col">
-        <%= post.content %>
-      </div>
-    </div>
-    <div class = "row">
-      <div class = "col">
-        <%= link_to "#{post.comments.count}コメント",admin_comment_path(@comment.id) %>
-      </div>
-    </div>
-  <% end %>
+      </th>
+      <td><%= link_to post.user.name,admin_post_path(post.id) %></td>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
 </div>

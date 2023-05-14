@@ -8,17 +8,17 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
       <li>
-         <%= link_to admin_posts_path ,class:"nav-item text-dark" do %>
+         <%= link_to admin_posts_path do %>
             投稿一覧
         <% end %>
       </li>
      <li>
-         <%= link_to admin_users_path,class:"nav-item text-dark" do %>
+         <%= link_to admin_users_path do %>
             会員一覧
         <% end %>
       </li>
      <li>
-         <%= link_to destroy_admin_session_path,method: :delete,class:"nav-item" "text-dark" do %>
+         <%= link_to destroy_admin_session_path,method: :delete do %>
             ログアウト
         <% end %>
       </li>
@@ -35,7 +35,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
       <li>
-         <%= link_to new_admin_session_path ,class:"nav-item text-dark" do %>
+         <%= link_to new_admin_session_path  do %>
             ログイン
         <% end %>
       </li>
