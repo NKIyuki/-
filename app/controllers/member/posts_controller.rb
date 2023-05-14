@@ -41,6 +41,12 @@ class Member::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search
+  	@posts = Post.where('title LIKE(?)', "%#{params[:search]}%").order(created_at: :desc)
+  	@search_result = "#{params[:search]}"
+  	render :index
+  end
+
 
   private
 

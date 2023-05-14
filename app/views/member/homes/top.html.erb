@@ -1,38 +1,32 @@
 <% if user_signed_in? %>
-  <% @posts.each do |post| %>
 <div class="container">
-  <div class="row">
-    <div class="col"><% if post.images.attached? %>
-                    <%= image_tag post.images[0].variant(resize: '50x50'),class: "w-100" %>
-                <% else %>
-                    <%= image_tag "no_images.png",class: "w-100" %>
-                <% end %>
+  <div class = "row">
+    <div class = "col">
+      <button type="button" class="btn btn-outline-warning"><%= link_to "一覧ページへ",posts_path %></button>
     </div>
-    <div class="col">
-      <h5 class="card-title"><%=link_to post.title,post_path(post.id)%></h5>
-        <p class="card-text"><%= post.content.truncate(15) %></p>
-        <p class="card-text"><%= post.user.name %></p>
-        <p class="card-text"><small class="text-muted">
-          <%= link_to "#{post.comments.count}コメント",post_path(post.id) %>
-          <% if user_signed_in? %>
-            <% if post.favoried_by?(current_user) %>
-              <%= link_to post_favorites_path(post), method: :delete do %>
-              ♥<%= post.favorites.count %> いいね
-              <% end %>
-            <% else %>
-              <%= link_to post_favorites_path(post), method: :post do %>
-              ♡<%= post.favorites.count %> いいね
-              <% end %>
-            <% end %>
-          <% end %>
-            </small></p>
-    </div>
-    <div class="w-100"></div>
-    <div class="col">col</div>
-    <div class="col">col</div>
+  </div>
+  <div class="card-deck">
+    <% @posts.each do |post| %>
+      <div class="card">
+        <% if post.images.attached? %>
+          <%= image_tag post.images[0].variant(resize: '50x50') %>
+        <% else %>
+          <%= image_tag "no_images.png"%>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%=post.title%></h5>
+           <p class="card-text"><%= post.content.truncate(15) %></p>
+          <p class="card-text"><%= post.user.name %></p>
+          <p class="card-text">
+          <small class="text-muted">
+          <%= post.comments.count %>コメント
+           ♥<%= post.favorites.count %> いいね
+          </small></p>
+        </div>
+      </div>
+    <%end%>
   </div>
 </div>
-  <% end %>
 <% else %>
   <div class="jumbotron">
   <div class='index-content text-center'>

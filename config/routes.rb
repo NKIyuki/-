@@ -11,7 +11,7 @@ Rails.application.routes.draw do
    sessions: "admin/sessions"
   }
 
-  get "search" => "searches#search"
+
 
 
   scope module: :member do
@@ -21,11 +21,12 @@ Rails.application.routes.draw do
     resources :comments,only:[:create, :show, :destroy]
     resource :favorites,only:[:create,:destroy]
     end
+  get "search" => "posts#search"
   root 'homes#top'
   end
 
   namespace :admin do
-  resources :posts do 
+  resources :posts do
     resources :comments
   end
   resources :users

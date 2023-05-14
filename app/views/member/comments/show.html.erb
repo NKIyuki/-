@@ -5,11 +5,16 @@
     </div>
   </div>
   <div class = "row">
+    <div class = "col">
       <% @post.images.each do |image| %>
         <div class="col-3">
           <%= image_tag image,class: "w-100" %>
         </div>
         <% end %>
+    </div>
+    <div class = "col">
+      <%= @post.content %>
+    </div>
     </div>
   <div class = "row">
     <div class = "col">
