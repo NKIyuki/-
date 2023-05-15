@@ -1,2 +1,9 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+.background_img {
+  background-image: url('../images/IMG_0037.jpg');
+  height: 800px;
+  background-size:cover;
+}

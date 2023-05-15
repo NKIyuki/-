@@ -1,19 +1,20 @@
 <div></div>
 <% @posts.each do |post| %>
 <div class ="container">
-   <div class="card mb-3">
-     <div class = "row">
-        <% post.images.each do |image| %>
-          <div class = "col">
+   <div class="card mb-3 mt-4">
+     <div class="row ">
+        <% post.images.each_with_index do |image, index| %>
+          <% break if index > 1  %>
+          <div class="col">
             <%if post.images.present? %>
               <% if post.images.attached? %>
-                <%= image_tag image,class: "w-100" %>
-          </div>
+                <%= image_tag image,class: "w-100", style: "height: 300px;object-fit:cover;" %>
               <% end %>
             <% else %>
-                <%= image_tag "no_images.png",class: "w-100" %>
+              <%= image_tag "no_images.png",class: "w-100", style: "height: 300px;object-fit:cover;" %>
             <% end %>
-          <% end %>
+          </div>
+        <% end %>
       </div>
         <div class="card-body">
           <h5 class="card-title"><%=link_to post.title,post_path(post.id),style: "color: black;" %></h5>

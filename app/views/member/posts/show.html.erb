@@ -1,5 +1,4 @@
 <div class = "container">
-  <div class = "row">
       <div class="card" style="width: auto;">
         <%if @post.images.present? %>
           <% if @post.images.attached? %>
@@ -62,8 +61,12 @@
             <%= link_to post_comment_path(@post.id, comment.id)  do %>
               <%= image_tag comment.user.get_profile_image(50,50) %>
             <% end %>
-              <%= comment.user.name %>
-              <%= comment.content %>
+          </div>
+          <div class = "col">
+            <%= comment.user.name %>
+          </div>
+          <div class = "col">
+            <%= comment.content %>
           </div>
         </div>
         <% end %>
