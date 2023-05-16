@@ -3,9 +3,6 @@
     <div class = "col-8">
       <h4>ユーザー詳細</h4>
     </div>
-    <div class = "col">
-
-    </div>
   </div>
   <div class = "row">
     <div class = "col">
@@ -13,7 +10,6 @@
         <%= image_tag @user.get_profile_image(300, 300) %>
       </h2>
     </div>
-    <div class = "col"></div>
     <div class = "col">
       <button type="button" class="btn btn-danger"><%= link_to "ユーザーを削除？",admin_user_path(@user.id),method: :delete,data: { confirm: '本当に削除しますか？'} ,style: "color: black;"%></button>
     </div>
@@ -22,7 +18,6 @@
     <div class = "col">
       <h3>ユーザーネーム</h3>
     </div>
-    <div class = "col"></div>
     <div class = "col">
       <h3><%= @user.name %></h3>
     </div>
