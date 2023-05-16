@@ -1,18 +1,12 @@
 <div class = "container">
-      <div class="card" style="width: auto;">
-        <%if @post.images.present? %>
-          <% if @post.images.attached? %>
+      <div class="card mt-5" style="width: auto;">
           <div class="row">
             <% @post.images.each do |image| %>
               <div class="col-6">
-              <%= image_tag image,class: "w-100" %>
+                <%= image_tag image, style: "height: 300px;object-fit:cover;" %>
               </div>
             <% end %>
-          <% end %>
           </div>
-        <% else %>
-          <%= image_tag "no_images.png" ,class: "w-100" %>
-        <% end %>
         <div class="card-body">
           <h5 class="card-title">
             <% if @post.user == current_user %>

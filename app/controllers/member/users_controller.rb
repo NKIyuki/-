@@ -10,6 +10,10 @@ class Member::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def confirm
+    @user = User.all
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -17,6 +21,12 @@ class Member::UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def withdrawal
+    @user = current_user
+    @user.destroy
+    redirect_to root_path
   end
 
 

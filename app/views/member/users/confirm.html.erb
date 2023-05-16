@@ -1,0 +1,30 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col offset-3 mt-5 mb-2">
+      <h1>本当に退会しますか？</h1>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col offset-3">
+      <p><h4>退会すると、会員登録情報や</h4></p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col offset-3">
+      <p><h4>これまでの投稿内容が閲覧できなくなります。</h4></p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col offset-3">
+      <p><h4>退会する場合は「退会する」をクリックして下さい。</h4></p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col offset-3 mt-5">
+      <p><%= link_to "退会する", withdrawal_path, method: :delete, data: { confirm: "本当に退会しますか？" }, class:"btn btn-danger" %></p>
+    </div>
+    <div class = "col mt-5">
+      <%= link_to "退会しない",user_path(current_user),class:"btn btn-success" %>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,19 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col">
+    <div class = "col mt-4 mb-4">
       <h2>ユーザー一覧</h2>
     </div>
   </div>
-  <% @users.each do |user| %>
-  <div class = "row">
-    <div class = "col">
-      <h2>
-        <%= image_tag user.get_profile_image(100, 100) %>
-      </h2>
-      <h2><%= link_to user.name,admin_user_path(user.id)%></h2>
+  
+  <div class="container">
+    <div class="row">
+      <% @users.each do |user| %>
+      <div class="col-sm-3">
+        <%= image_tag user.get_profile_image(100, 100) %><br>
+        <%= link_to user.name,admin_user_path(user.id)%>
+      </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
+  
 </div>

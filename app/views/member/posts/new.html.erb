@@ -1,54 +1,32 @@
-<h1>Member::Posts#new</h1>
-<p>Find me in app/views/member/posts/new.html.erb</p>
-
 <% flash.each do |message_type, message| %>
-　　<div class="alert alert-<%= message_type %>"><%= message %></div>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
-
 <div class = "container">
   <div class = "row">
-    <div class = "col">
-      <h1>投稿ページ</h1>
-    </div>
-<%= form_with model:@post,url: posts_path  do |f| %>
-  </div>
-  <div class = "row">
-    <div class = "col">
-      <h4>タイトル</h4>
+    <div class = "col mt-5 mb-3">
+      <h4>新規投稿</h4>
     </div>
   </div>
-  <div class = "row">
-    <div class = "col">
-      <%= f.text_area :title %>
-    </div>
+  <%= form_with model:@post,url: posts_path  do |f| %>
+  <div class="form-group">
+    <label for="formGroupExampleInput">タイトル</label>
+       <div><%= f.text_field :title, size: "110x50" %></div>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">内容</label>
+      <div><%= f.text_area :content,size:"110" %></div>
   </div>
   <div class = "row">
-    <div class = "col">
-      <h4>投稿内容</h4>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-      <%= f.text_area :content %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
-       <h4>画像</h4>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col">
+    <div class = "col mt-3 mb-3">
       <div class="field">
-        <%= f.label :images %>
         <%= f.file_field :images, multiple: true %>
       </div>
     </div>
   </div>
   <div class = "row">
-    <div class = "col">
-      <%= f.submit '投稿',class:"btn btn-success" %>
+    <div class = "col offset-9">
+      <%= f.submit '投稿する',class:"btn btn-success" %>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>

@@ -11,18 +11,17 @@ Rails.application.routes.draw do
    sessions: "admin/sessions"
   }
 
-
-
-
   scope module: :member do
   resources :posts
-  resources :users,only:[:show,:edit,:update,:index]
+  resources :users,only:[:show,:edit,:update,:index,:destroy ]
   resources :posts,only:[:new,:create,:index,:show,:destroy] do
     resources :comments,only:[:create, :show, :destroy]
     resource :favorites,only:[:create,:destroy]
     end
   get "search" => "posts#search"
   root 'homes#top'
+  get 'confirm' => 'users#confirm'
+  delete 'withdrawal' => 'users#withdrawal'
   end
 
   namespace :admin do
