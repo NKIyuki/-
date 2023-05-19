@@ -1,5 +1,11 @@
 class Member::UsersController < ApplicationController
    #before_action :correct_user, only: [:edit]
+  def new_guest
+    user = User.guest
+    sign_in user  
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+   
   def show
     @user = User.find(params[:id])
     @posts = @user.posts

@@ -12,16 +12,18 @@ Rails.application.routes.draw do
   }
 
   scope module: :member do
+  root 'homes#top'
+  get "search" => "posts#search"
+  get 'confirm' => 'users#confirm'
+  delete 'withdrawal' => 'users#withdrawal'
   resources :posts
-  resources :users,only:[:show,:edit,:update,:index,:destroy ]
+  resources :users,only:[:show,:edit,:update,:index,:destroy ]do
+    post 'guest_sign_in' => 'users#new_guest'
+  end
   resources :posts,only:[:new,:create,:index,:show,:destroy] do
     resources :comments,only:[:create, :show, :destroy]
     resource :favorites,only:[:create,:destroy]
     end
-  get "search" => "posts#search"
-  root 'homes#top'
-  get 'confirm' => 'users#confirm'
-  delete 'withdrawal' => 'users#withdrawal'
   end
 
   namespace :admin do

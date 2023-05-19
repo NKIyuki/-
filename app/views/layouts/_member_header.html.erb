@@ -1,6 +1,8 @@
 <% if user_signed_in? %>
   <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">デカ盛り</a>
+  <%= link_to root_path do %>
+    <i class="navbar-brand fa-regular fa-bowl-chopsticks">デカ盛り食堂</i>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
