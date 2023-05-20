@@ -16,10 +16,9 @@ Rails.application.routes.draw do
   get "search" => "posts#search"
   get 'confirm' => 'users#confirm'
   delete 'withdrawal' => 'users#withdrawal'
+  post 'guest_sign_in' => 'users#new_guest'
   resources :posts
-  resources :users,only:[:show,:edit,:update,:index,:destroy ]do
-    post 'guest_sign_in' => 'users#new_guest'
-  end
+  resources :users,only:[:show,:edit,:update,:index,:destroy ]
   resources :posts,only:[:new,:create,:index,:show,:destroy] do
     resources :comments,only:[:create, :show, :destroy]
     resource :favorites,only:[:create,:destroy]
