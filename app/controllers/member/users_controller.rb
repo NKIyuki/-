@@ -1,11 +1,18 @@
 class Member::UsersController < ApplicationController
-   #before_action :correct_user, only: [:edit]
+  before_action :ensure_normal_user, only: :edit
+
   def new_guest
     user = User.guest
-    sign_in user  
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました(ゲストユーザは削除できません）。'
   end
-   
+
+  def ensure_normal_user
+    if new_guest == 'guest@example.com'
+      redirect_to user_path(@user.id)
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
