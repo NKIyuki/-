@@ -1,10 +1,9 @@
 class Member::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: :edit
 
   def new_guest
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました(ゲストユーザは削除できません）。'
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   def ensure_normal_user
@@ -20,7 +19,12 @@ class Member::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
+    if @user.email == 'guest@example.com'
+      redirect_to root_path, notice: 'ゲストユーザーは編集できません'
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def confirm

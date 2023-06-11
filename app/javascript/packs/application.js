@@ -36,3 +36,11 @@ $(function(){
 $(function(){
   setTimeout("$('.alert').fadeOut('slow')", 2000);
 });
+
+$(function() {
+  $('.slider').slick({
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 4000, 
+  });
+});
