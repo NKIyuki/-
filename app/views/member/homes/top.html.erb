@@ -20,7 +20,7 @@
           <%= image_tag "no_images.png"%>
         <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%=post.title%></h5>
+          <h5 class="card-title"><%= link_to post.title,post_path(post.id),style: "color: black;" %></h5>
           <p class="card-text"><%= post.content.truncate(15) %></p>
           <p class="card-text"><%= post.user.name %></p>
           <p class="card-text">

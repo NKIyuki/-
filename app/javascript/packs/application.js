@@ -21,7 +21,7 @@ ActiveStorage.start()
 
 require("jquery")
 
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('#back a').on('click',function(event){
     $('body, html').animate({
       scrollTop:0
@@ -30,17 +30,17 @@ $(function() {
   });
 });
 
-$(function(){
+$(document).on('turbolinks:load', function() {
   setTimeout("$('.notice').fadeOut('slow')", 2000);
 });
-$(function(){
+$(document).on('turbolinks:load', function() {
   setTimeout("$('.alert').fadeOut('slow')", 2000);
 });
 
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('.slider').slick({
       arrows: false,
       autoplay: true,
-      autoplaySpeed: 4000, 
+      autoplaySpeed: 4000,
   });
 });

@@ -25,7 +25,7 @@ class Member::PostsController < ApplicationController
     if post.save
       redirect_to post_path(post)
     else
-      redirect_to new_post_path, notice: 'タイトルと内容を記入してください'
+      redirect_to user_path(current_user)
     end
   end
 
