@@ -25,7 +25,7 @@ class Member::PostsController < ApplicationController
     if post.save
       redirect_to post_path(post)
     else
-      redirect_to user_path(current_user)
+      redirect_to new_post_path, notice:'投稿に失敗しました。'
     end
   end
 

@@ -1,4 +1,0 @@
-<h2>タイトル"<%= @search_result %>"の検索結果(<%= @posts.count %>件)</h2>
-<% @posts.each do |post| %>
-    <%= link_to post.title,post_path(post.id) %>
-<% end %>
