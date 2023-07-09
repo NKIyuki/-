@@ -18,9 +18,9 @@ const imagePath = (name) => images(name, true)
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
 require("jquery")
 
+/* global $*/
 $(document).on('turbolinks:load', function() {
   $('#back a').on('click',function(event){
     $('body, html').animate({
